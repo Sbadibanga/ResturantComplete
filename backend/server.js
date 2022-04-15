@@ -1,10 +1,11 @@
 import express from 'express';
 import cors from 'cors';
 import data from './data';
-
+import customerRouter from './routers/customerRouter'
 
 const app = express();
 app.use(cors())
+app.use("/api/customers", customerRouter);
 
 const db = require("./models");
 
@@ -19,10 +20,8 @@ app.get('/api/products/:id', (req, res) =>{
     res.status(404).send({message: 'Product Not Found!'});
   }
 })
-// Routers
-// const customerRouter = require("./Routes/Customers");
 
-// app.use("/customers", customerRouter);
+
 
 db.sequelize.sync().then(() => {
   app.listen(5000, () => {

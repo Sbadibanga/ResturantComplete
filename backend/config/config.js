@@ -1,13 +1,15 @@
-{
+require('dotenv').config()
+
+module.exports = {
   "development": {
     "username": "root",
-    "password": "password",
-    "database": "AtHomeDatabase",
-    "host": "localhost",
+    "password": process.env.PASSWORD,
+    "database": process.env.DATABASE,
+    "host": process.env.HOST,
     "dialect": "mysql"
   },
   "test": {
-    "username": "root",
+    "username": "rooclet",
     "password": null,
     "database": "database_test",
     "host": "127.0.0.1",
