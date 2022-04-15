@@ -1,7 +1,9 @@
+/* eslint-disable arrow-body-style */
 import jwt  from 'jsonwebtoken';
 import config  from './config/configa';
 
-export const generateToken = (customer) => jwt.sign(
+export const generateToken = (customer) => {
+    return jwt.sign(
       {
         id: customer.id,
         firstname: customer.firstname,
@@ -11,3 +13,4 @@ export const generateToken = (customer) => jwt.sign(
       },
       config.JWT_SECRET
     );
+  };

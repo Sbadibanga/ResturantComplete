@@ -1,6 +1,29 @@
+import { signin } from "../api";
+import { getCustomerInfo, setCustomerInfo} from "../localStorage";
+
+
 const SigninScreen = {
-    after_render: () =>{},
-    render: () =>`
+    after_render: () =>{
+        document.getElementById('signin-form').addEventListener
+        ('submit', async (e) => {
+            e.preventDefault();
+            const data = await signin({
+                email: document.getElementById('email').value,
+                password: document.getElementById('password').value,
+            });
+            if(data.error){
+                alert(data.error);
+            }else{
+                setCustomerInfo(data)
+                document.location.hash ='/';
+            }
+        })
+    },
+    render: () => {
+        if(getCustomerInfo().firstName){
+            document.location.hash = '/';
+        }
+        return `
         <section class="menu-section">
         <div class="form-container">
             <form id="signin-form">
@@ -29,7 +52,8 @@ const SigninScreen = {
             </form>
         </div>
         </section>
-        `,
+        `;
+    },
 };
 
-export default SigninScreen
+export default SigninScreen;

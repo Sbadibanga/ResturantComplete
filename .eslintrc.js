@@ -13,6 +13,7 @@ module.exports = {
       'no-console': 0,
       'import/prefer-default-export': 0,
       'no-underscore-dangele':0,
+      'disable arrow-body-style': 0
     },
   };
   
