@@ -1,10 +1,12 @@
 import express from 'express';
 import cors from 'cors';
+import bodyParser from 'body-parser';
 import data from './data';
 import customerRouter from './routers/customerRouter'
 
 const app = express();
-app.use(cors())
+app.use(cors());
+app.use(bodyParser.json());
 app.use("/api/customers", customerRouter);
 
 const db = require("./models");
@@ -21,7 +23,10 @@ app.get('/api/products/:id', (req, res) =>{
   }
 })
 
-
+app.use((err, req, res, next)=>{
+  const status = err.name && err.name === 'ValidationError' ? 400 : 500;
+  res.status(status).send({message: err.message});
+})
 
 db.sequelize.sync().then(() => {
   app.listen(5000, () => {
