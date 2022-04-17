@@ -1,7 +1,8 @@
-import { parseRequestURL } from "../utils";
+import { hideLoading, parseRequestURL, showLoading } from "../utils";
 import { getProduct } from '../api';
 
 const MealScreen = {
+  
   after_render: () =>{
     const request = parseRequestURL();
     document.getElementById('add-button').addEventListener('click',()=>{
@@ -10,10 +11,12 @@ const MealScreen = {
   },
   render: async() => {
     const request = parseRequestURL();
+    showLoading();
     const product = await getProduct(request.id);
     if(product.error){
       return `<div>${product.error}</div>`;
     }
+    hideLoading();
     return `
     <section class="menu-section">
     <div class="content">

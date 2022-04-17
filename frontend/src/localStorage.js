@@ -13,8 +13,8 @@ export const setCartItems = (cartItems) =>{
 
 export const setCustomerInfo = ({
     id = '',
-    firstname ='',
-    lastname = '',
+    firstName ='',
+    lastName = '',
     email = '',
     password ='',
     isAdmin = false
@@ -23,8 +23,8 @@ export const setCustomerInfo = ({
         'customerInfo',
         JSON.stringify({
             id,
-            firstname ,
-            lastname ,
+            firstName ,
+            lastName ,
             email ,
             password ,
             isAdmin 
@@ -35,5 +35,5 @@ export const setCustomerInfo = ({
 export const getCustomerInfo = () => {
     return localStorage.getItem('customerInfo')
     ? JSON.parse(localStorage.getItem('customerInfo'))
-    : {firstname: '', lastname: '', email: '', password: ''};
+    : {firstName: '', lastName: '', email: '', password: ''};
 };

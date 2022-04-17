@@ -21,7 +21,6 @@ customerRouter.get(
         res.status(500).send({message: err.message});
     }
 }));
-// register customers
 
 
 // login customers
@@ -38,12 +37,43 @@ customerRouter.post(
         });
     }else{
         res.send({
-            id: Customers.id,
-            firstname: Customers.firstName,
-            lastname: Customers.lastName,
-            email: Customers.email,
-            isAdmin: Customers.isAdmin,
+            id: signinCustomer.id,
+            firstname: signinCustomer.firstName,
+            lastname: signinCustomer.lastName,
+            email: signinCustomer.email,
+            isAdmin: signinCustomer.isAdmin,
             token: generateToken(signinCustomer)
+        });
+    };
+  
+  })
+);
+
+// register customers
+customerRouter.post(
+    '/register', 
+    expressAsyncHandler( async (req, res) => {
+    const { firstname, lastname, Email, Password } = req.body;
+  
+    const registerCustomer = await Customers.create({
+        firstName: firstname,
+        lastName: lastname,
+        email: Email,
+        password: Password
+    })
+  
+    if (!registerCustomer) {
+        res.status(401).send({
+            message: "Invalid Customer data",
+        });
+    }else{
+        res.send({
+            id: registerCustomer.id,
+            firstname: registerCustomer.firstName,
+            lastname: registerCustomer.lastName,
+            email: registerCustomer.email,
+            isAdmin: registerCustomer.isAdmin,
+            token: generateToken(registerCustomer)
         });
     };
   

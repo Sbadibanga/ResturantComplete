@@ -9,10 +9,10 @@ import { getCustomerInfo } from '../localStorage';
        <div class="Rlogo"><h4>At Home</h4></div>
        
        <ul class="nav-links">
-         <li><a href="#home">Home</a></li>
-         <li><a href="#about">About Us</a></li>
-         <li><a href="#menu">Menu</a></li>
-         <li><a href="#resturant">Resturant</a></li>
+         <li><a href="/#home">Home</a></li>
+         <li><a href="/#about">About Us</a></li>
+         <li><a href="/#menu">Menu</a></li>
+         <li><a href="/#resturant">Resturant</a></li>
          <li>
          ${ firstName
           ? `<a href="/#/profile">${firstName}</a>`

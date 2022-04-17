@@ -6,8 +6,8 @@ export const generateToken = (customer) => {
     return jwt.sign(
       {
         id: customer.id,
-        firstname: customer.firstname,
-        lastname: customer.lastname,
+        firstname: customer.firstName,
+        lastname: customer.lastName,
         email: customer.email,
         isAdmin: customer.isAdmin
       },
