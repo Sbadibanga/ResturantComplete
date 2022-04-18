@@ -105,6 +105,7 @@ const HomeScreen = {
         </section>
         `;
   },
+  after_render: () => {}
 };
 
 export default HomeScreen;

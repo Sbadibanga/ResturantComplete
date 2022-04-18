@@ -1,3 +1,4 @@
+/* eslint-disable object-shorthand */
 import express from "express";
 import expressAsyncHandler from 'express-async-handler';
 import {Customers} from "../models";
@@ -53,13 +54,13 @@ customerRouter.post(
 customerRouter.post(
     '/register', 
     expressAsyncHandler( async (req, res) => {
-    const { firstname, lastname, Email, Password } = req.body;
+    const { firstname, lastname, email, password } = req.body;
   
     const registerCustomer = await Customers.create({
         firstName: firstname,
         lastName: lastname,
-        email: Email,
-        password: Password
+        email: email,
+        password: password
     })
   
     if (!registerCustomer) {

@@ -37,12 +37,12 @@ const RegisterScreen = {
                     <h1>Register!</h1>
                     </li>
                     <li>
-                    <label for="firstName"> First Name :</label>
-                    <input type="name" name="firstName" id="firstname"/>
+                    <label for="firstname"> First Name :</label>
+                    <input type="name" name="firstname" id="firstname"/>
                     </li>
                     <li>
-                    <label for="lastName"> Last Name :</label>
-                    <input type="name" name="lastName" id="lastname"/>
+                    <label for="lastname"> Last Name :</label>
+                    <input type="name" name="lastname" id="lastname"/>
                     </li>
                     <li>
                         <label for="email"> Email :</label>
@@ -53,7 +53,7 @@ const RegisterScreen = {
                         <input type="password" name="password" id="password"/>
                     </li>
                     <li>
-                        <label for="password">Re-Enter Password : </label>
+                        <label for="repassword">Re-Enter Password : </label>
                         <input type="password" name="repassword" id="repassword"/>
                     </li>
                     <li>

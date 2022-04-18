@@ -1,9 +1,11 @@
+/* eslint-disable spaced-comment */
 import { signin } from "../api";
 import { showLoading, hideLoading, showMessage } from '../utils';
 import { getCustomerInfo, setCustomerInfo} from "../localStorage";
 
 
 const SigninScreen = {
+    //after_render function
     after_render: () =>{
         document.getElementById('signin-form').addEventListener
         ('submit', async (e) => {
@@ -22,6 +24,7 @@ const SigninScreen = {
             }
         })
     },
+    //render function which returns signin form
     render: () => {
         if(getCustomerInfo().firstName){
             document.location.hash = '/';

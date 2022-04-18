@@ -13,11 +13,9 @@ import { getCustomerInfo } from '../localStorage';
          <li><a href="/#about">About Us</a></li>
          <li><a href="/#menu">Menu</a></li>
          <li><a href="/#resturant">Resturant</a></li>
-         <li>
          ${ firstName
-          ? `<a href="/#/profile">${firstName}</a>`
-          : `<a href="/#/signin">Sign-In</a>`}
-        </li>
+          ? `<li><a href="/#/profile">${firstName}</a></li>`
+          : `<li><a href="/#/signin">Sign-In</a></li>`}
          <li><a href="/#/cart">Cart</a></li>
        </ul>
        <div class="burger">

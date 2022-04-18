@@ -42,7 +42,7 @@ export const signin = async({email, password}) => {
         return {error: err.response.data.message || err.message};
     }
 };
-export const register = async({firstName, lastName,email, password}) => {
+export const register = async({firstname, lastname,email, password}) => {
     try{
         const response = await axios({
             url: `${apiUrl}/api/customers/register`,
@@ -51,8 +51,8 @@ export const register = async({firstName, lastName,email, password}) => {
                 'Content-Type' : 'application/json',
             },
             data:{
-                firstName,
-                lastName,
+                firstname,
+                lastname,
                 email,
                 password,
             },
