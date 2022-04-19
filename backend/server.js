@@ -1,13 +1,15 @@
 import express from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
+// import session from 'express-session';
 import data from './data';
 import customerRouter from './routers/customerRouter'
 
 const app = express();
 app.use(cors());
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: false}))
+// app.use(bodyParser.urlencoded({extended: false}))
+// app.use(session())
 app.use("/api/customers", customerRouter);
 
 const db = require("./models");

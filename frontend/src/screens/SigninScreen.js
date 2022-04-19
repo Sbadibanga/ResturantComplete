@@ -17,9 +17,9 @@ const SigninScreen = {
             });
             hideLoading();
             if(data.error){
-                showMessage(data.error)
+                showMessage(data.error);
             }else{
-                setCustomerInfo(data)
+                setCustomerInfo(data);
                 document.location.hash ='/';
             }
         })

@@ -11,8 +11,8 @@ customerRouter.get(
     '/createadmin', 
     expressAsyncHandler( async (req, res) =>{
     try{
-      Customers.Customers.create({
-      firstName: "siren",
+      Customers.create({
+      firstName: "Siren",
       lastName: "Ocean",
       email: "sireno@gmail.com",
       password: "password",
@@ -54,20 +54,23 @@ customerRouter.post(
 customerRouter.post(
     '/register', 
     expressAsyncHandler( async (req, res) => {
-    const { firstname, lastname, email, password } = req.body;
+    const {email} = req.body;
+    
+    const customerEmail = await Customers.findOne({where: {email} });
+
+    const registerCustomer = {
+        firstName: req.body.firstname,
+        lastName: req.body.lastname,
+        email: req.body.email,
+        password: req.body.password,
+    }
   
-    const registerCustomer = await Customers.create({
-        firstName: firstname,
-        lastName: lastname,
-        email: email,
-        password: password
-    })
-  
-    if (!registerCustomer) {
+    if (customerEmail) {
         res.status(401).send({
-            message: "Invalid Customer data",
+            message: "Email already exists",
         });
-    }else{
+    }else if(!customerEmail){
+        Customers.create(registerCustomer);
         res.send({
             id: registerCustomer.id,
             firstname: registerCustomer.firstName,

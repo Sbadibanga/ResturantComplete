@@ -17,6 +17,7 @@ export const setCustomerInfo = ({
     lastName = '',
     email = '',
     password ='',
+    token = '',
     isAdmin = false
 }) =>{
     localStorage.setItem(
@@ -27,6 +28,7 @@ export const setCustomerInfo = ({
             lastName ,
             email ,
             password ,
+            token,
             isAdmin 
         })
     );
@@ -35,5 +37,5 @@ export const setCustomerInfo = ({
 export const getCustomerInfo = () => {
     return localStorage.getItem('customerInfo')
     ? JSON.parse(localStorage.getItem('customerInfo'))
-    : {firstName: '', lastName: '', email: '', password: ''};
+    : {firstName: '', email: '', password: ''};
 };
