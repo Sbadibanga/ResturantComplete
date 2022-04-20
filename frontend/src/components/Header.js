@@ -2,7 +2,7 @@ import { getCustomerInfo } from '../localStorage';
 
  const Header = {
    render: () => {
-     const { firstName } = getCustomerInfo();
+     const { firstname } = getCustomerInfo();
      return ` 
      <div class="container">
      <nav>
@@ -14,10 +14,10 @@ import { getCustomerInfo } from '../localStorage';
          <li><a href="/#menu">Menu</a></li>
          <li><a href="/#resturant">Resturant</a></li>
          ${ 
-          firstName
-          ? `<li><a href="/#/profile">${firstName}</a></li>`
+          firstname
+          ? `<li><a href="/#/profile">${firstname}</a></li>`
           : `<li><a href="/#/signin">Sign-In</a></li>`
-        }
+          }
          <li><a href="/#/cart">Cart</a></li>
        </ul>
        <div class="burger">

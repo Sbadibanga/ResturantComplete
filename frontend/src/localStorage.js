@@ -13,8 +13,8 @@ export const setCartItems = (cartItems) =>{
 
 export const setCustomerInfo = ({
     id = '',
-    firstName ='',
-    lastName = '',
+    firstname ='',
+    lastname = '',
     email = '',
     password ='',
     token = '',
@@ -24,8 +24,8 @@ export const setCustomerInfo = ({
         'customerInfo',
         JSON.stringify({
             id,
-            firstName ,
-            lastName ,
+            firstname ,
+            lastname ,
             email ,
             password ,
             token,
