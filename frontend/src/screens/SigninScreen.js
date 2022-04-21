@@ -1,6 +1,6 @@
 /* eslint-disable spaced-comment */
 import { signin } from "../api";
-import { showLoading, hideLoading, showMessage } from '../utils';
+import { showLoading, hideLoading, showMessage, redirectCustomer } from '../utils';
 import { getCustomerInfo, setCustomerInfo} from "../localStorage";
 
 
@@ -20,14 +20,14 @@ const SigninScreen = {
                 showMessage(data.error);
             }else{
                 setCustomerInfo(data);
-                document.location.hash ='/';
+                redirectCustomer();
             }
         })
     },
     //render function which returns signin form
     render: () => {
         if(getCustomerInfo().firstName){
-            document.location.hash = '/';
+            redirectCustomer();
         }
         return `
         <section class="menu-section">

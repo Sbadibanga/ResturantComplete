@@ -2,7 +2,7 @@
 import express from "express";
 import expressAsyncHandler from 'express-async-handler';
 import {Customers} from "../models";
-import { generateToken } from "../utlis";
+import { generateToken, isAuth } from "../utlis";
 
 
 const customerRouter = express.Router();
@@ -83,5 +83,34 @@ customerRouter.post(
   
   })
   );
+
+customerRouter.put(
+    '/:id', isAuth,
+    expressAsyncHandler( async (req, res) => {
+    const {id} = req.params;
+    const customer = await Customers.findOne({where: {id: id}});
+
+    if (!customer) {
+        res.status(401).send({
+            message: "Customer Not Found",
+        });
+    }else{
+        customer.firstName = req.body.firstname || customer.firstName
+        customer.lastName = req.body.lastname || customer.lastName
+        customer.email = req.body.email || customer.email
+        customer.password = req.body.password || customer.password
+        const updatedCustomer = await customer.save();
+        res.send({
+            id: updatedCustomer.id,
+            firstname: updatedCustomer.firstName,
+            lastname: updatedCustomer.lastName,
+            email: updatedCustomer.email,
+            isAdmin: updatedCustomer.isAdmin,
+            token: generateToken(updatedCustomer)
+        });
+    };
+})
+);
+  
   
 export default customerRouter;

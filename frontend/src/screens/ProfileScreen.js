@@ -1,15 +1,19 @@
-import { register } from "../api";
-import { getCustomerInfo, setCustomerInfo} from "../localStorage";
-import { hideLoading, redirectCustomer, showLoading, showMessage } from "../utils";
+import {update } from "../api";
+import { getCustomerInfo, setCustomerInfo, clearCustomer} from "../localStorage";
+import { hideLoading, showLoading, showMessage } from "../utils";
 
 
-const RegisterScreen = {
+const ProfileScreen = {
     after_render: () =>{
-        document.getElementById('register-form').addEventListener
+        document.getElementById("signout-button").addEventListener("click", () =>{
+            clearCustomer();
+            document.location.hash = "/";
+        })
+        document.getElementById('profile-form').addEventListener
         ('submit', async (e) => {
             e.preventDefault();
             showLoading();
-            const data = await register({
+            const data = await update({
                 firstname: document.getElementById('firstname').value,
                 lastname: document.getElementById('lastname').value,
                 email: document.getElementById('email').value,
@@ -20,50 +24,44 @@ const RegisterScreen = {
                 showMessage(data.error);
             }else{
                 setCustomerInfo(data)
-                redirectCustomer();
+                document.location.hash ='/';
             }
         });
     },
     render: () => {
-        if(getCustomerInfo().firstName){
-            redirectCustomer();
+        const {firstname,lastname, email} = getCustomerInfo();
+        if(!firstname){
+            document.location.hash = '/';
         }
         return `
         <section class="menu-section">
         <div class="form-container">
-            <form id="register-form">
+            <form id="profile-form">
                 <ul class="form-items">
                     <li>
-                    <h1>Register!</h1>
+                    <h1>Customer Profile</h1>
                     </li>
                     <li>
                     <label for="firstname"> First Name :</label>
-                    <input type="name" name="firstname" id="firstname"/>
+                    <input type="name" name="firstname" id="firstname" value="${firstname}"/>
                     </li>
                     <li>
                     <label for="lastname"> Last Name :</label>
-                    <input type="name" name="lastname" id="lastname"/>
+                    <input type="name" name="lastname" id="lastname" value="${lastname}"/>
                     </li>
                     <li>
                         <label for="email"> Email :</label>
-                        <input type="email" name="email" id="email"/>
+                        <input type="email" name="email" id="email" value="${email}"/>
                     </li>
                     <li>
                         <label for="password">Password : </label>
                         <input type="password" name="password" id="password"/>
                     </li>
                     <li>
-                        <label for="repassword">Re-Enter Password : </label>
-                        <input type="password" name="repassword" id="repassword"/>
+                        <button type="submit" class="btn btn-default">Update</button>
                     </li>
                     <li>
-                        <button type="submit" class="btn btn-default">Register!</button>
-                    </li>
-                    <li>
-                        <div>
-                            Already have an account?
-                            <a href="/#/signin"> Sign in!</a>
-                        </div>
+                        <button type="button" id="signout-button" class="btn btn-default">Sign Out</button>
                     </li>
                 </ul>
             </form>
@@ -73,4 +71,4 @@ const RegisterScreen = {
     },
 };
 
-export default RegisterScreen;
+export default ProfileScreen;

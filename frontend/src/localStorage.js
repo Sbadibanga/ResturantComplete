@@ -33,7 +33,9 @@ export const setCustomerInfo = ({
         })
     );
 };
-
+export const clearCustomer = () =>{
+    localStorage.removeItem('customerInfo')
+}
 export const getCustomerInfo = () => {
     return localStorage.getItem('customerInfo')
     ? JSON.parse(localStorage.getItem('customerInfo'))
