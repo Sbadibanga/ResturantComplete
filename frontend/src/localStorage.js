@@ -41,3 +41,25 @@ export const getCustomerInfo = () => {
     ? JSON.parse(localStorage.getItem('customerInfo'))
     : {firstName: '', email: '', password: ''};
 };
+
+export const getShipping = () => {
+    const shipping = localStorage.getItem('shipping')
+    ? JSON.parse(localStorage.getItem('shipping'))
+    : {
+        address: '',
+        city: '',
+        postcode: '',
+        country: ''
+    };
+    return shipping
+};
+
+export const setShipping = ({
+    address = '',
+    city = '',
+    postcode = '',
+    country = ''
+}) => {
+    localStorage.setItem('shipping', JSON.stringify({address, city, postcode, country})
+    );
+};

@@ -577,6 +577,23 @@ Contact us starts here
 /*---------------
 Contact us ends here
 -----------------*/
+/* Checkout */
+.checkout-steps {
+  display: flex;
+  justify-content: space-between;
+  width: 40rem;
+  margin: 1rem auto;
+}
+.checkout-steps > div {
+  border-top: 0.3rem var(--netural-color) solid;
+  color: var(--netural-color);
+  flex: 1 1;
+  padding-top: 1rem;
+}
+.checkout-steps > div.active {
+  color: var(--contrast-color);
+  border-top-color: var(--contrast-color);
+}
 /*---------------
 footer styles starts here
 -----------------*/

@@ -1,6 +1,6 @@
 /* eslint-disable no-shadow */
 /* eslint-disable no-use-before-define */
-import {parseRequestURL, rerender} from "../utils";
+import {parseRequestURL, redirectCustomer, rerender} from "../utils";
 import {getProduct} from '../api'
 import { getCartItems, setCartItems } from "../localStorage";
 
@@ -44,7 +44,7 @@ const CartScreen = {
             });
         });
         document.getElementById("checkout-button").addEventListener('click', () =>{
-            document.location.hash = '/signin';
+            redirectCustomer();
         } )
     },
     render: async() =>{
