@@ -1,5 +1,7 @@
 import { getCustomerInfo, getShipping, setShipping} from "../localStorage";
 import CheckoutSteps from '../components/CheckoutSteps';
+import { shipping } from "../api";
+import { hideLoading, showLoading, showMessage } from "../utils";
 
 
 const ShippingScreen = {
@@ -7,13 +9,21 @@ const ShippingScreen = {
         document.getElementById('shipping-form').addEventListener
         ('submit', async (e) => {
             e.preventDefault();
-            setShipping({
+            showLoading();
+            const data = await shipping({
                 address: document.getElementById('address').value,
                 city: document.getElementById('city').value,
                 postcode: document.getElementById('postcode').value,
                 country: document.getElementById('country').value
             });
-            document.location.hash = '/payment';
+            hideLoading();
+            if(data.error){
+                showMessage(data.error);
+            }else{
+                setShipping(data)
+               document.location.hash = '/payment'; 
+            }
+            
         });
     },
     render: () => {

@@ -1,0 +1,106 @@
+I have been following a tutorial only and I have a data.js file in my backend folder that contains information about a product like this:
+
+    module.exports ={
+        products: [
+          {
+            id: '1',
+            name: 'Meal 1',
+            image: '/images/dinners/product-1.jpg',
+            price: 12.99,
+            descrip: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
+            countInStock: 8,
+      
+          }
+      ],
+      };
+I want to be able to retrieve the name and price to place into my database, I´m using MySQL the tutorial is using MongoDB I have written the array in sequielize syntax like this:
+
+    module.exports = (sequelize, DataTypes) => {
+        const Orderline = sequelize.define("Orderline", {
+          orderItems: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            get(){
+              const items = this.getDataValue('name', 'price');
+              return items;
+            }
+          } return Orderline;
+      };
+
+addressRouter.put(
+    '/shipping', isAuth, 
+    expressAsyncHandler( async (req, res) => {
+
+    const shippingAddress = {
+        address: req.body.address,
+        city: req.body.city,
+        postcode: req.body.postcode,
+        country: req.body.country,
+    }
+  
+    try{
+        Address.create(shippingAddress);
+        res.send({
+            id: shippingAddress.id,
+            address: shippingAddress.address,
+            city: shippingAddress.city,
+            postcode: shippingAddress.postcode,
+            country: shippingAddress.country,
+        });
+    }catch(err){
+        res.status(500).send({message: err.message})
+    }
+  
+  })
+);
+export const register = async({firstname, lastname,email, password}) => {
+    try{
+        const response = await axios({
+            url: `${apiUrl}/api/customers/register`,
+            method: 'POST',
+            header: {
+                'Content-Type' : 'application/json',
+            },
+            data:{
+                firstname,
+                lastname,
+                email,
+                password,
+            },
+        });
+        if(response.statusText !== 'OK'){
+            throw new Error(response.data.message);
+        }
+        return response.data;
+    }catch(err){
+        console.log(err);
+        return {error: err.response.data.message || err.message};
+    }
+};
+
+export const shipping = async({address, city, postcode, country}) => {
+    try{
+        const {token} = getCustomerInfo();
+        const response = await axios({
+            url: `${apiUrl}/api/shipping`,
+            method: 'POST',
+            header: {
+                'Content-Type' : 'application/json',
+                Authorization: `Bearer ${token}`,
+            },
+            data:{
+                address,
+                city,
+                postcode,
+                country,
+            },
+        });
+        if(response.statusText !== 'OK'){
+            throw new Error(response.data.message);
+        }
+        return response.data;
+    }catch(err){
+        console.log(err);
+        return {error: err.response.data.message || err.message};
+    }
+};

@@ -1,47 +1,36 @@
 module.exports = (sequelize, DataTypes) => {
-    const Customers = sequelize.define("Customers", {
-      firstName: {
+    const Address = sequelize.define("Address", {
+      address: {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
           notEmpty: true
         }
       },
-      lastName: {
+      city: {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
           notEmpty: true
         }
       },
-      email: {
+      postcode: {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
           notEmpty: true
         }
       },
-      password: {
+      country: {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
           notEmpty: true
         }
-      },
-      isAdmin: {
-        type: DataTypes.BOOLEAN,
-        default: '0',
       }
     });
-    Customers.associate = (models) => {
-      Customers.hasMany(models.Address, {
-        onDelete: "cascade",
-      });
-  
-      Customers.hasMany(models.Orderline, {
-        onDelete: "cascade",
-      });
+    Address.associate = (models) => {
+      Address.belongsTo(models.Customers);
     };
-  
-    return Customers;
+    return Address;
   };

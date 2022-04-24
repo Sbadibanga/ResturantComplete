@@ -43,24 +43,25 @@ export const getCustomerInfo = () => {
 };
 
 export const getShipping = () => {
-    const shipping = localStorage.getItem('shipping')
-    ? JSON.parse(localStorage.getItem('shipping'))
+    return localStorage.getItem('shippingInfo')
+    ? JSON.parse(localStorage.getItem('shippingInfo'))
     : {
         address: '',
         city: '',
         postcode: '',
         country: ''
     };
-    return shipping
 };
 
 export const setShipping = ({
+    id = '',
     address = '',
     city = '',
     postcode = '',
-    country = ''
+    country = '',
+    customerId = ''
 }) => {
-    localStorage.setItem('shipping', JSON.stringify({address, city, postcode, country})
+    localStorage.setItem('shippingInfo', JSON.stringify({id,address, city, postcode, country, customerId})
     );
 };
 export const getPayment = () => {

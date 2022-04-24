@@ -9,6 +9,7 @@ import { parseRequestURL, showLoading, hideLoading} from './utils';
 import ProfileScreen from './screens/ProfileScreen';
 import ShippingScreen from './screens/ShippingScreen';
 import PaymentScreen from './screens/PaymentScreen';
+import PlaceOrderScreen from './screens/PlaceOrderScreen';
 
 const routes = {
   '/': homeScreen,
@@ -19,7 +20,8 @@ const routes = {
   '/register': RegisterScreen,
   '/profile': ProfileScreen,
   '/shipping': ShippingScreen,
-  '/payment': PaymentScreen
+  '/payment': PaymentScreen,
+  '/placeorder': PlaceOrderScreen
 };
 const router = async () => {
   showLoading();

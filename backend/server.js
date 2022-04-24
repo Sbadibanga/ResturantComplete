@@ -3,14 +3,14 @@ import cors from 'cors';
 import bodyParser from 'body-parser';
 // import session from 'express-session';
 import data from './data';
-import customerRouter from './routers/customerRouter'
+import customerRouter from './routers/customerRouter';
+import addressRouter from './routers/addressRouter'
 
 const app = express();
 app.use(cors());
 app.use(bodyParser.json());
-// app.use(bodyParser.urlencoded({extended: false}))
-// app.use(session())
 app.use("/api/customers", customerRouter);
+app.use("/api/address", addressRouter)
 
 const db = require("./models");
 
