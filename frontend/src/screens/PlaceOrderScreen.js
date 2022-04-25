@@ -18,29 +18,34 @@ const convertCartToOrder = () => {
         document.location.hash = '/payment';
     }
 
+    return{
+        shipping,
+        orderItems,
+        payment,
+    };
+
+};
+const orderSummary = () => {
+    const orderItems = getCartItems();
+    
     const itemsPrice = orderItems.reduce((a,c) => a +c.price * c.qty, 0);
     const shippingPrice = itemsPrice > 100 ? 0: 5;
     const taxPrice = Math.round(0.15 * itemsPrice * 100) / 100;
     const totalPrice = itemsPrice + shippingPrice + taxPrice;
 
-    return{
-        shipping,
-        orderItems,
+    return{   
         itemsPrice,
-        payment,
         shippingPrice,
         taxPrice,
         totalPrice
     };
-
 };
-
 const PlaceOrderScreen = {
     after_render: () =>{
         document
         .getElementById('placeorder-button')
         .addEventListener('click', async () => {
-            const order = convertCartToOrder();
+            const order = orderSummary();
             showLoading();
             const data = await createOrder(order);
             hideLoading();
@@ -48,19 +53,22 @@ const PlaceOrderScreen = {
             showMessage(data.error);
             } else {
             cleanCart();
-            document.location.hash = `/order/${data.order.id}`;
+            document.location.hash = '/'
+            // document.location.hash = `/order/${data.order.id}`;
             }
         });
     },
     render: () => {
         const {
-            orderItems,
-            shipping,
-            payment,
             itemsPrice,
             shippingPrice,
             taxPrice,
             totalPrice
+        } = orderSummary();
+        const {
+            payment,
+            orderItems,
+            shipping,
         } = convertCartToOrder();
         return`
         <section class="menu-section">

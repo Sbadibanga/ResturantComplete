@@ -4,13 +4,16 @@ import bodyParser from 'body-parser';
 // import session from 'express-session';
 import data from './data';
 import customerRouter from './routers/customerRouter';
-import addressRouter from './routers/addressRouter'
+import addressRouter from './routers/addressRouter';
+import orderRouter from './routers/orderRouter';
+
 
 const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 app.use("/api/customers", customerRouter);
-app.use("/api/address", addressRouter)
+app.use("/api/address", addressRouter);
+app.use("/api/orders", orderRouter);
 
 const db = require("./models");
 

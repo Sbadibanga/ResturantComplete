@@ -6,6 +6,9 @@ import { hideLoading, showLoading, showMessage } from "../utils";
 
 const ShippingScreen = {
     after_render: () =>{
+        document.getElementById("continue-btn").addEventListener("click", () =>{
+            document.location.hash = '/payment'; 
+        })
         document.getElementById('shipping-form').addEventListener
         ('submit', async (e) => {
             e.preventDefault();
@@ -21,7 +24,6 @@ const ShippingScreen = {
                 showMessage(data.error);
             }else{
                 setShipping(data)
-               document.location.hash = '/payment'; 
             }
             
         });
@@ -57,7 +59,10 @@ const ShippingScreen = {
                     <input type="text" name="country" id="country" value="${country}"/>
                     </li>
                     <li>
-                        <button type="submit" class="btn btn-default">Continue</button>
+                        <button type="submit" class="btn btn-default">Add Address</button>
+                    </li>
+                    <li>
+                        <button type="button" id="continue-btn" class="btn btn-default">Continue</button>
                     </li>
                 </ul>
             </form>
