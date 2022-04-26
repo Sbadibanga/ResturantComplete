@@ -1,5 +1,6 @@
 /* eslint-disable object-shorthand */
 import express from "express";
+import bcrypt from 'bcrypt';
 import expressAsyncHandler from 'express-async-handler';
 import {Customers} from "../models";
 import { generateToken, isAuth } from "../utlis";
@@ -30,13 +31,14 @@ customerRouter.post(
     expressAsyncHandler( async (req, res) => {
     const { email, password } = req.body;
   
-    const signinCustomer = await Customers.findOne({ where: { email, password } });
+    const signinCustomer = await Customers.findOne({ where: { email} });
   
-    if (!signinCustomer) {
-        res.status(401).send({
+    if (!signinCustomer) res.status(401).send({
             message: "Invalid email or password",
         });
-    }else{
+    
+    bcrypt.compare(password, signinCustomer.password).then(async (match) =>{
+        if (!match) res.send({message: "Wrong email and password combo"});
         res.send({
             id: signinCustomer.id,
             firstname: signinCustomer.firstName,
@@ -45,7 +47,7 @@ customerRouter.post(
             isAdmin: signinCustomer.isAdmin,
             token: generateToken(signinCustomer)
         });
-    };
+    });
   
   })
 );
@@ -54,30 +56,31 @@ customerRouter.post(
 customerRouter.post(
     '/register', 
     expressAsyncHandler( async (req, res) => {
-    const {email} = req.body;
-    
+    const {firstname,lastname,password,email} = req.body;
     const customerEmail = await Customers.findOne({where: {email} });
-
-    const registerCustomer = {
-        firstName: req.body.firstname,
-        lastName: req.body.lastname,
-        email: req.body.email,
-        password: req.body.password,
-    }
-  
+    
     if (customerEmail) {
         res.status(401).send({
             message: "Email already exists",
         });
     }else if(!customerEmail){
-        Customers.create(registerCustomer);
+
+        bcrypt.hash(password, 10).then((hash)=>{
+        Customers.create({
+            firstName: firstname,
+            lastName: lastname,
+            email: email,
+            password: hash
+            });
+        });
+  
         res.send({
-            id: registerCustomer.id,
-            firstname: registerCustomer.firstName,
-            lastname: registerCustomer.lastName,
-            email: registerCustomer.email,
-            isAdmin: registerCustomer.isAdmin,
-            token: generateToken(registerCustomer)
+            id: Customers.id,
+            firstname: Customers.firstName,
+            lastname: Customers.lastName,
+            email: Customers.email,
+            isAdmin: Customers.isAdmin,
+            token: generateToken(Customers)
         });
     };
   

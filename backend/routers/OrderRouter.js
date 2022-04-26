@@ -1,3 +1,4 @@
+
 import express from "express";
 import expressAsyncHandler from 'express-async-handler';
 import { isAuth } from '../utlis';
@@ -11,14 +12,15 @@ orderRouter.post(
     isAuth,
     expressAsyncHandler(async (req, res) => {
       const customerId = req.customer.id;
-      const custAddress = await Address.findOne({ where: { CustomerId: customerId} });
+      const addresss = Address.findOne({where: {CustomerId: customerId}})
+      const addressId = addresss.id
       
       const createdOrder = ({
         totalPrice: req.body.totalPrice,
         itemsPrice: req.body.itemsPrice,
         taxPrice: req.body.taxPrice,
         shippingPrice: req.body.shippingPrice,
-        AddressId: custAddress.id,
+        AddressId: addressId,
         CustomerId: customerId
       });
       Orderline.create(createdOrder);
