@@ -12,20 +12,22 @@ addressRouter.post(
     const  {address, postcode, city, country} = req.body;
     const customerId = req.customer.id;
     const customer = await Customers.findOne({where: {id: customerId }})
-    const custAddress = await Address.findOne({where: {CustomerId: customerId}})
+    const custAddress = await Address.findOne({where: {CustomerId: customerId, postcode: postcode, address: address}})
 
     if (!customer) {
         res.status(401).send({
             message: "Customer Not Found",
         });
     }else if (custAddress){
+        res.status(401).send({
+            message: "Address already registered",
+        });
         res.send({
-            message: "Address already created",
             address: address,
             postcode: postcode,
             city: city,
             country: country
-        });
+        })
     }else{
         Address.create({
             address: address,

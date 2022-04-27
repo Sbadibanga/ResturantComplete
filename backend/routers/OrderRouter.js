@@ -12,8 +12,8 @@ orderRouter.post(
     isAuth,
     expressAsyncHandler(async (req, res) => {
       const customerId = req.customer.id;
-      const addresss = Address.findOne({where: {CustomerId: customerId}})
-      const addressId = addresss.id
+      const addresses = await Address.findOne({where: {CustomerId: customerId}})
+      const addressId = addresses.id
       
       const createdOrder = ({
         totalPrice: req.body.totalPrice,
@@ -23,8 +23,8 @@ orderRouter.post(
         AddressId: addressId,
         CustomerId: customerId
       });
-      Orderline.create(createdOrder);
-      res.status(201).send({ message: 'New Order Created', data: createdOrder});
+      const newOrder = await Orderline.create(createdOrder);
+      res.status(201).send({ message: 'New Order Created', data: newOrder});
     })
 );
 export default orderRouter;

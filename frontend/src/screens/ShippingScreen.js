@@ -22,10 +22,9 @@ const ShippingScreen = {
             hideLoading();
             if(data.error){
                 showMessage(data.error);
-                setShipping(data)
             }else{
                 setShipping(data)
-                document.location.hash = '/payment'; 
+                // document.location.hash = '/payment'; 
             }
             
         });
