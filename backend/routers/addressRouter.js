@@ -9,15 +9,18 @@ const addressRouter = express.Router();
 addressRouter.post(
     '/:id', isAuth,
     expressAsyncHandler( async (req, res) => {
-    const {id} = req.params;
     const  {address, postcode, city, country} = req.body;
     const customerId = req.customer.id;
-    const customer = await Customers.findOne({where: {id: id}})
-    const custAddress = await Address.findOne({where: {address: address,postcode: postcode}})
+    const customer = await Customers.findOne({where: {id: customerId }})
+    const custAddress = await Address.findOne({where: {CustomerId: customerId}})
 
-    if (custAddress && !customer) {
+    if (!customer) {
         res.status(401).send({
-            message: "Customer Not Found/address already created",
+            message: "Customer Not Found",
+        });
+    }else if (custAddress){
+        res.status(401).send({
+            message: "Address already created",
         });
     }else{
         Address.create({

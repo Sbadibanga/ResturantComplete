@@ -1,8 +1,8 @@
 /* eslint-disable no-shadow */
 /* eslint-disable no-use-before-define */
-import {parseRequestURL, redirectCustomer, rerender} from "../utils";
+import {parseRequestURL, rerender} from "../utils";
 import {getProduct} from '../api'
-import { getCartItems, setCartItems } from "../localStorage";
+import { getCartItems, getCustomerInfo, setCartItems } from "../localStorage";
 
 const addToCart = (item, forceUpdate = false) =>{
     let cartItems = getCartItems();
@@ -44,7 +44,13 @@ const CartScreen = {
             });
         });
         document.getElementById("checkout-button").addEventListener('click', () =>{
-            redirectCustomer();
+            const {firstname} = getCustomerInfo();
+            if(!firstname){
+                document.location.hash = '/signin';
+            }else{
+                document.location.hash = '/shipping';
+            }
+            
         } )
     },
     render: async() =>{

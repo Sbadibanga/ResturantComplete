@@ -30,7 +30,12 @@ module.exports = (sequelize, DataTypes) => {
       }
     });
     Address.associate = (models) => {
-      Address.belongsTo(models.Customers);
+      Address.belongsTo(models.Customers, {
+        onDelete: "cascade",
+      });
+      Address.hasMany(models.Orderline, {
+        onDelete: "cascade",
+      });
     };
     return Address;
   };

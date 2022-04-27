@@ -28,13 +28,6 @@ module.exports = (sequelize, DataTypes) => {
           notEmpty: true
         }
       },
-      payment: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        validate: {
-          notEmpty: true
-        }
-      },
       isPaid:{
         type: DataTypes.BOOLEAN,
         default: '0',
