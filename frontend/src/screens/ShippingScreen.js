@@ -7,7 +7,6 @@ import { hideLoading, showLoading, showMessage } from "../utils";
 const ShippingScreen = {
     after_render: () =>{
         document.getElementById("continue-btn").addEventListener("click", () =>{
-
             document.location.hash = '/payment'; 
         })
         document.getElementById('shipping-form').addEventListener
@@ -23,6 +22,7 @@ const ShippingScreen = {
             hideLoading();
             if(data.error){
                 showMessage(data.error);
+                setShipping(data)
             }else{
                 setShipping(data)
                 document.location.hash = '/payment'; 

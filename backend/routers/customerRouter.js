@@ -26,19 +26,20 @@ customerRouter.get(
 
 
 // login customers
+// login customers
+// login customers
 customerRouter.post(
     '/signin', 
     expressAsyncHandler( async (req, res) => {
     const { email, password } = req.body;
   
-    const signinCustomer = await Customers.findOne({ where: { email} });
+    const signinCustomer = await Customers.findOne({ where: { email, password } });
   
-    if (!signinCustomer) res.status(401).send({
+    if (!signinCustomer) {
+        res.status(401).send({
             message: "Invalid email or password",
         });
-    
-    bcrypt.compare(password, signinCustomer.password).then(async (match) =>{
-        if (!match) res.send({message: "Wrong email and password combo"});
+    }else{
         res.send({
             id: signinCustomer.id,
             firstname: signinCustomer.firstName,
@@ -47,7 +48,7 @@ customerRouter.post(
             isAdmin: signinCustomer.isAdmin,
             token: generateToken(signinCustomer)
         });
-    });
+    };
   
   })
 );
