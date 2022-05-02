@@ -1,4 +1,4 @@
-import {update, updateAdd} from "../api";
+import {getMyOrders, update, updateAdd} from "../api";
 import { getCustomerInfo, setCustomerInfo, clearCustomer, getShipping, setShipping} from "../localStorage";
 import { hideLoading, showLoading, showMessage } from "../utils";
 
@@ -46,69 +46,108 @@ const ProfileScreen = {
             }
         });
     },
-    render: () => {
+    render: async () => {
         const {firstname,lastname, email} = getCustomerInfo();
         const {address, postcode, city, country} = getShipping();
+        const orders = await getMyOrders();
         if(!firstname){
             document.location.hash = '/';
         }
         return `
-        <section class="menu-section profile">
-        <div class="form-container">
-            <form id="profile-form">
-                <ul class="form-items">
-                    <li>
-                    <h1>Profile</h1>
-                    </li>
-                    <li>
-                    <label for="firstname"> First Name :</label>
-                    <input type="name" name="firstname" id="firstname" value="${firstname}"/>
-                    </li>
-                    <li>
-                    <label for="lastname"> Last Name :</label>
-                    <input type="name" name="lastname" id="lastname" value="${lastname}"/>
-                    </li>
-                    <li>
-                        <label for="email"> Email :</label>
-                        <input type="email" name="email" id="email" value="${email}"/>
-                    </li>
-                    <li>
-                        <label for="password">Password : </label>
-                        <input type="password" name="password" id="password"/>
-                    </li>
-                    <li>
-                        <button type="submit" class="btn btn-default">Update</button>
-                    </li>
-                </ul>
-            </form>
-            <form id="address-form">
-                <ul class="form-items">
-                    <li>
-                    <h1>Address</h1>
-                    </li>
-                    <li>
-                    <label for="address"> Address :</label>
-                    <input type="text" name="address" id="address" value="${address}"/>
-                    </li>
-                    <li>
-                    <label for="postcode"> Postcode :</label>
-                    <input type="text" name="postcode" id="postcode" value="${postcode}"/>
-                    </li>
-                    <li>
-                        <label for="city"> City :</label>
-                        <input type="text" name="email" id="city" value="${city}"/>
-                    </li>
-                    <li>
-                        <label for="country"> Country : </label>
-                        <input type="text" name="country" id="country" value="${country}"/>
-                    </li>
-                    <li>
-                        <button type="submit" class="btn btn-default">Update</button>
-                    </li>
-                </ul>
-            </form> 
+        <section class="menu-section">
+        <div class="profile">
+            <div class="profile-info">
+                <div class="form-containerp">
+                <form id="profile-form">
+                    <ul class="form-itemsp">
+                        <li>
+                        <h1>Profile</h1>
+                        </li>
+                        <li>
+                        <label for="firstname"> First Name :</label>
+                        <input type="name" name="firstname" id="firstname" value="${firstname}"/>
+                        </li>
+                        <li>
+                        <label for="lastname"> Last Name :</label>
+                        <input type="name" name="lastname" id="lastname" value="${lastname}"/>
+                        </li>
+                        <li>
+                            <label for="email"> Email :</label>
+                            <input type="email" name="email" id="email" value="${email}"/>
+                        </li>
+                        <li>
+                            <label for="password">Password : </label>
+                            <input type="password" name="password" id="password"/>
+                        </li>
+                        <li>
+                            <button type="submit" class="btn btn-default">Update</button>
+                        </li>
+                        <li>
+                        <button type="button" id="signout-button" class="btn btn-default sign-out">Sign Out</button>
+                        </li>
+                    </ul>
+                </form>
+                <form id="address-form">
+                    <ul class="form-itemsp">
+                        <li>
+                        <h1>Address</h1>
+                        </li>
+                        <li>
+                        <label for="address"> Address :</label>
+                        <input type="text" name="address" id="address" value="${address}"/>
+                        </li>
+                        <li>
+                        <label for="postcode"> Postcode :</label>
+                        <input type="text" name="postcode" id="postcode" value="${postcode}"/>
+                        </li>
+                        <li>
+                            <label for="city"> City :</label>
+                            <input type="text" name="email" id="city" value="${city}"/>
+                        </li>
+                        <li>
+                            <label for="country"> Country : </label>
+                            <input type="text" name="country" id="country" value="${country}"/>
+                        </li>
+                        <li>
+                            <button type="submit" class="btn btn-default">Update</button>
+                        </li>
+                    </ul>
+                </form> 
+            </div>
+            </div>
+            <div class="profile-orders">
+            <h2>Order History</h2>
+            <table>
+            <thead>
+                <tr>
+                <th>ORDER ID </th>
+                <th>DATE </th>
+                <th>TOTAL </th>
+                <th>PAID </th>
+                <th>DELIVERED </th>
+                </tr>
+            </thead>
+            <tbody>
+            ${
+                orders.length === 0
+                  ? `<tr><td colspan="6">No Order Found.</tr>`
+                  : orders.map(
+                        (order) => `
+            <tr>
+              <td>${order.id}</td>
+              <td>${order.createdAt}</td>
+              <td>${order.totalPrice}</td>
+              <td>${order.isPaid || 'No'}</td>
+              <td>${order.isDelivered || 'No'}</td>
+            </tr>
+            `
+                      )
+                      .join('\n')
+              }
+            </tbody>
+          </table>
+            </div>
         </div>
-        <button type="button" id="signout-button" class="btn btn-default sign-out">Sign Out</button>
         </section>
         `;
     },

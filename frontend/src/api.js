@@ -165,4 +165,22 @@ export const createOrder = async (order) => {
     } catch (err) {
       return { error: err.response ? err.response.data.message : err.message };
     }
+};
+export const getMyOrders = async () => {
+    try {
+      const { token } = getCustomerInfo();
+      const response = await axios({
+        url: `${apiUrl}/api/orders/mine`,
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      if (response.statusText !== 'OK') {
+        throw new Error(response.data.message);
+      }
+      return response.data;
+    } catch (err) {
+      return { error: err.response ? err.response.data.message : err.message };
+    }
   };

@@ -27,4 +27,12 @@ orderRouter.post(
       res.status(201).send({ message: 'New Order Created', data: newOrder});
     })
 );
+orderRouter.get(
+  '/mine',
+  isAuth,
+  expressAsyncHandler(async (req, res) => {
+    const orders = await Orderline.findAll({ customer: req.customer.id });
+    res.send(orders);
+  })
+);
 export default orderRouter;
