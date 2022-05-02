@@ -244,7 +244,6 @@ nav {
 .nav-links {
   display: flex;
   justify-content: space-around;
-  width: 50%;
 }
 .nav-links li {
   list-style: none;
@@ -608,10 +607,46 @@ th {
   text-align: left;
 }
 tbody > tr:nth-child(odd) {
-  background-color: #f0f0f0;
+  background-color: var(--contrast-color);
+  color: var(--main-color);
+  font-weight: 300;
 }
 td {
   padding: 0.5rem;
+}
+/* Dashboard */
+.dashboard {
+  display: flex;
+  flex-wrap: wrap;
+  height: 100%;
+}
+.dashboard h1 {
+  font-size: 3rem;
+  margin: 1rem 0;
+}
+.dashboard-menu {
+  flex: 1 1 10rem;
+  background-color: var(--netural-color);
+}
+.dashboard-menu ul {
+  padding: 0;
+}
+.dashboard-menu a {
+  display: flex;
+  padding: 1rem;
+  padding-left: 2rem;
+  justify-content: space-between;
+}
+.dashboard-menu a:hover {
+  background-color: var(--contrast-color);
+}
+.dashboard-menu li.selected a {
+  background-color: var(--contrast-color);
+  color: var(--main-color);
+}
+.dashboard-content {
+  flex: 4 1 80rem;
+  padding: 1rem;
 }
 /*---------------
 Contact us starts here

@@ -19,7 +19,7 @@ import { getCustomerInfo } from '../localStorage';
           : `<li><a href="/#/signin">Sign-In</a></li>`
           }
          <li><a href="/#/cart">Cart</a></li>
-         
+        ${isAdmin?`<li><a href="/#/dashboard"> Dashboard</a></li>`: ''}
        </ul>
        <div class="burger">
          <div class="line1"></div>
