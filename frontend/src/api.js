@@ -93,6 +93,33 @@ export const update = async({firstname, lastname,email, password}) => {
         return {error: err.response.data.message || err.message};
     }
 };
+export const updateAdd = async({address, postcode,city, country}) => {
+    try{
+        const {id, token} = getCustomerInfo();
+        const response = await axios({
+            url: `${apiUrl}/api/address/${id}`,
+            method: 'PUT',
+            headers: {
+                'Content-Type' : 'application/json',
+                Authorization : `Bearer ${token}`,
+            },
+            data:{
+                address,
+                postcode,
+                city,
+                country,
+            },
+        });
+        if(response.statusText !== 'OK'){
+            throw new Error(response.data.message);
+        }
+        return response.data;
+    }catch(err){
+        console.log(err);
+        return {error: err.response.data.message || err.message};
+    }
+};
+
 export const shipping = async({address, city, postcode, country}) => {
     try{
         const {id,token} = getCustomerInfo();

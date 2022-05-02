@@ -1,5 +1,5 @@
-import {update } from "../api";
-import { getCustomerInfo, setCustomerInfo, clearCustomer} from "../localStorage";
+import {update, updateAdd} from "../api";
+import { getCustomerInfo, setCustomerInfo, clearCustomer, getShipping, setShipping} from "../localStorage";
 import { hideLoading, showLoading, showMessage } from "../utils";
 
 
@@ -27,19 +27,38 @@ const ProfileScreen = {
                 document.location.hash ='/';
             }
         });
+        document.getElementById('address-form').addEventListener
+        ('submit', async (e) => {
+            e.preventDefault();
+            showLoading();
+            const data = await updateAdd({
+                address: document.getElementById('address').value,
+                postcode: document.getElementById('postcode').value,
+                city: document.getElementById('city').value,
+                country: document.getElementById('country').value,
+            });
+            hideLoading();
+            if(data.error){
+                showMessage(data.error);
+            }else{
+                setShipping(data)
+                document.location.hash ='/';
+            }
+        });
     },
     render: () => {
         const {firstname,lastname, email} = getCustomerInfo();
+        const {address, postcode, city, country} = getShipping();
         if(!firstname){
             document.location.hash = '/';
         }
         return `
-        <section class="menu-section">
+        <section class="menu-section profile">
         <div class="form-container">
             <form id="profile-form">
                 <ul class="form-items">
                     <li>
-                    <h1>Customer Profile</h1>
+                    <h1>Profile</h1>
                     </li>
                     <li>
                     <label for="firstname"> First Name :</label>
@@ -60,12 +79,36 @@ const ProfileScreen = {
                     <li>
                         <button type="submit" class="btn btn-default">Update</button>
                     </li>
-                    <li>
-                        <button type="button" id="signout-button" class="btn btn-default">Sign Out</button>
-                    </li>
                 </ul>
             </form>
+            <form id="address-form">
+                <ul class="form-items">
+                    <li>
+                    <h1>Address</h1>
+                    </li>
+                    <li>
+                    <label for="address"> Address :</label>
+                    <input type="text" name="address" id="address" value="${address}"/>
+                    </li>
+                    <li>
+                    <label for="postcode"> Postcode :</label>
+                    <input type="text" name="postcode" id="postcode" value="${postcode}"/>
+                    </li>
+                    <li>
+                        <label for="city"> City :</label>
+                        <input type="text" name="email" id="city" value="${city}"/>
+                    </li>
+                    <li>
+                        <label for="country"> Country : </label>
+                        <input type="text" name="country" id="country" value="${country}"/>
+                    </li>
+                    <li>
+                        <button type="submit" class="btn btn-default">Update</button>
+                    </li>
+                </ul>
+            </form> 
         </div>
+        <button type="button" id="signout-button" class="btn btn-default sign-out">Sign Out</button>
         </section>
         `;
     },

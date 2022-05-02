@@ -15,6 +15,7 @@ export const generateToken = (customer) => {
     );
 };
 
+// function to check if the user is an authorizaed user
 export const isAuth = (req, res, next) =>{
   const bearerToken = req.headers.authorization;
   if(!bearerToken){

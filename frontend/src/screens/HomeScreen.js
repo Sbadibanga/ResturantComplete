@@ -16,6 +16,7 @@ const HomeScreen = {
     }
     const products = response.data;
     return `
+    <!--Homepage section starts here-->
     <section class="home-section" id="home">
         <div class="home-bg"></div>
         <div class="container">
@@ -27,6 +28,8 @@ const HomeScreen = {
           </div>
         </div>
     </section>
+    <!--Homepage section ends here-->
+    <!--About us section starts here-->
     <section class="about-section" id="about">
         <div class="container">
           <div class="row">
@@ -54,6 +57,8 @@ const HomeScreen = {
           </div>
         </div>
     </section>
+    <!--About us section ends here-->
+    <!--menu section starts here-->
     <section class="menu-section" id="menu">
     <div class="container">
     <div class="menu-content">
@@ -80,6 +85,8 @@ const HomeScreen = {
           ).join('\n')}
         </ul>
     </section>
+    <!--menu section ends here-->
+    <!--contact section starts here-->
     <section class="about-section" id="resturant">
           <div class="container">
             <div class="row">
@@ -103,9 +110,9 @@ const HomeScreen = {
             </div>
           </div>
         </section>
+        <!--contact section ends here-->
         `;
   },
-  after_render: () => {}
 };
 
 export default HomeScreen;

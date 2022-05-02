@@ -204,7 +204,7 @@ section {
   margin: 2rem;
 }
 /*--------------------
-Navigation starts here
+Navigation styles starts here
 ----------------------*/
 .header {
   padding: 12px 0;
@@ -538,8 +538,8 @@ Sign-in styles start here
 -----------------*/
 .form-container {
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   height: 100%;
 }
 .form-items {
@@ -565,6 +565,15 @@ form {
 /*---------------
 Sign-in styles end here
 -----------------*/
+/*
+profile styles
+*/
+.profile {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  align-items: center;
+}
 /*---------------
 Contact us starts here
 -----------------*/
