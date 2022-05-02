@@ -33,13 +33,16 @@ customerRouter.post(
     expressAsyncHandler( async (req, res) => {
     const { email, password } = req.body;
   
-    const signinCustomer = await Customers.findOne({ where: { email, password } });
+    const signinCustomer = await Customers.findOne({ where: { email} });
   
     if (!signinCustomer) {
         res.status(401).send({
             message: "Invalid email or password",
         });
     }else{
+        bcrypt.compare(password, signinCustomer.password).then(async (match) =>{
+            if(!match) res.send({error: "wrong email and password combo"});
+        })
         res.send({
             id: signinCustomer.id,
             firstname: signinCustomer.firstName,
@@ -93,17 +96,20 @@ customerRouter.put(
     expressAsyncHandler( async (req, res) => {
     const {id} = req.params;
     const customer = await Customers.findOne({where: {id: id}});
+    const {firstname,lastname,password,email} = req.body;
 
     if (!customer) {
         res.status(401).send({
             message: "Customer Not Found",
         });
     }else{
-        customer.firstName = req.body.firstname || customer.firstName
-        customer.lastName = req.body.lastname || customer.lastName
-        customer.email = req.body.email || customer.email
-        customer.password = req.body.password || customer.password
-        const updatedCustomer = await customer.save();
+        await bcrypt.hash(password,10).then((hash)=>{
+            customer.firstName = firstname || customer.firstName
+            customer.lastName = lastname || customer.lastName
+            customer.email = email || customer.email
+            customer.password = hash || customer.password
+        })
+        const updatedCustomer = await customer.save(); 
         res.send({
             id: updatedCustomer.id,
             firstname: updatedCustomer.firstName,
