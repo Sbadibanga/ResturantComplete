@@ -81,34 +81,3 @@ addressRouter.put(
 
 
 export default addressRouter;
-
-/* else if(custAddress){
-    res.status(401).send({
-        message: "Address already exist",
-    });
-} 
-customerRouter.post(
-    '/signin', 
-    expressAsyncHandler( async (req, res) => {
-    const { email, password } = req.body;
-  
-    const signinCustomer = await Customers.findOne({ where: { email} });
-  
-    if (!signinCustomer) res.status(401).send({
-            message: "Invalid email or password",
-        });
-    
-    bcrypt.compare(password, signinCustomer.password).then(async (match) =>{
-        if (!match) res.send({message: "Wrong email and password combo"});
-        res.send({
-            id: signinCustomer.id,
-            firstname: signinCustomer.firstName,
-            lastname: signinCustomer.lastName,
-            email: signinCustomer.email,
-            isAdmin: signinCustomer.isAdmin,
-            token: generateToken(signinCustomer)
-        });
-    });
-  
-  })
-); */

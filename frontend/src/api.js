@@ -221,3 +221,23 @@ export const getMyOrders = async () => {
       return { error: err.response ? err.response.data.message : err.message };
     }
 };
+export const getOrders = async () => {
+    try {
+      const { token } = getCustomerInfo();
+      const response = await axios({
+        url: `${apiUrl}/api/orders`,
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      if (response.statusText !== 'OK') {
+        throw new Error(response.data.message);
+      }
+      return response.data;
+    } catch (err) {
+      console.log(err);
+      return { error: err.response.data.message || err.message };
+    }
+  };

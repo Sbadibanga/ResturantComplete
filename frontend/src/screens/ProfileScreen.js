@@ -120,7 +120,7 @@ const ProfileScreen = {
             <table>
             <thead>
                 <tr>
-                <th>ORDER ID </th>
+                <th>Items Price </th>
                 <th>DATE </th>
                 <th>TOTAL </th>
                 <th>PAID </th>
@@ -134,7 +134,7 @@ const ProfileScreen = {
                   : orders.map(
                         (order) => `
             <tr>
-              <td>${order.id}</td>
+              <td>${order.itemsPrice}</td>
               <td>${order.createdAt}</td>
               <td>${order.totalPrice}</td>
               <td>${order.isPaid || 'No'}</td>

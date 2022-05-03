@@ -3,12 +3,7 @@ import DashboardMenu from '../components/DashboardMenu';
 
  const ProductListScreen = {
    after_render: () => {
-    document
-    .getElementById('create-product-button')
-    .addEventListener('click', async () => {
-      const data = await createProduct();
-      document.location.hash = `/product/${data.product.id}/edit`;
-    });
+    
    },
    render: async () => {
      const products = await getProducts();

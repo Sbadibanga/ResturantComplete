@@ -20,7 +20,7 @@ const RegisterScreen = {
                 showMessage(data.error);
             }else{
                 setCustomerInfo(data)
-                redirectCustomer();
+                document.location.hash = '/';
             }
         });
     },

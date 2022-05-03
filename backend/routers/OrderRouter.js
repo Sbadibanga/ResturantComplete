@@ -1,7 +1,7 @@
 
 import express from "express";
 import expressAsyncHandler from 'express-async-handler';
-import { isAuth } from '../utlis';
+import { isAdmin, isAuth } from '../utlis';
 import {Orderline, Address} from '../models';
 
 
@@ -31,7 +31,16 @@ orderRouter.get(
   '/mine',
   isAuth,
   expressAsyncHandler(async (req, res) => {
-    const orders = await Orderline.findAll({ customer: req.customer.id });
+    const orders = await Orderline.findAll({ where: {CustomerId: req.customer.id}});
+    res.send(orders);
+  })
+);
+orderRouter.get(
+  '/',
+  isAuth,
+  isAdmin,
+  expressAsyncHandler(async (req, res) => {
+    const orders = await Orderline.findAll({customer: req.customer.id})
     res.send(orders);
   })
 );

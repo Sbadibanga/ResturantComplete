@@ -6,7 +6,7 @@ import data from './data';
 import customerRouter from './routers/customerRouter';
 import addressRouter from './routers/addressRouter';
 import orderRouter from './routers/OrderRouter';
-// import productRouter from './routers/productRouter';
+import productRouter from './routers/productRouter';
 
 
 const app = express();
@@ -15,7 +15,7 @@ app.use(bodyParser.json());
 app.use("/api/customers", customerRouter);
 app.use("/api/address", addressRouter);
 app.use("/api/orders", orderRouter);
-// app.use('/api/products', productRouter);
+app.use('/api/product', productRouter);
 
 const db = require("./models");
 
