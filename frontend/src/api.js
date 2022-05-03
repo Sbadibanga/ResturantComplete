@@ -39,6 +39,25 @@ export const getProducts = async () => {
       return { error: err.response.data.message || err.message };
     }
 };
+export const createProduct = async () => {
+    try {
+      const { token } = getCustomerInfo();
+      const response = await axios({
+        url: `${apiUrl}/api/products`,
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      if (response.statusText !== 'Created') {
+        throw new Error(response.data.message);
+      }
+      return response.data;
+    } catch (err) {
+      return { error: err.response.data.message || err.message };
+    }
+};
 export const signin = async({email, password}) => {
     try{
         const response = await axios({

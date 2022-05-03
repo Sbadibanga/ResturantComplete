@@ -32,3 +32,10 @@ export const isAuth = (req, res, next) =>{
     })
   }
 }
+export const isAdmin = (req, res, next) => {
+  if (req.customer && req.customer.isAdmin) {
+    next();
+  } else {
+    res.status(401).send({ message: 'Token is not valid for this admin user' });
+  }
+};

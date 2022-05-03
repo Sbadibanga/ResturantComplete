@@ -67,7 +67,8 @@ customerRouter.post(
         res.status(401).send({
             message: "Email already exists",
         });
-    }else if(!customerEmail){
+    }
+    else if(!customerEmail){
 
         bcrypt.hash(password, 10).then((hash)=>{
         Customers.create({
