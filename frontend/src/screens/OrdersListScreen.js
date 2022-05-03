@@ -13,7 +13,7 @@ import { getOrders } from '../api';
      <div class="dashboard">
      ${DashboardMenu.render({ selected: 'orders' })}
      <div class="dashboard-content">
-       <h1>orders</h1>
+       <h1>Orders</h1>
        <div class="order-list">
          <table>
            <thead>

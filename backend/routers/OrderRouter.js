@@ -6,7 +6,7 @@ import {Orderline, Address} from '../models';
 
 
 const orderRouter = express.Router();
-
+// route to place an order, ispaid and delivered are default 0(false)
 orderRouter.post(
     '/',
     isAuth,
@@ -21,12 +21,15 @@ orderRouter.post(
         taxPrice: req.body.taxPrice,
         shippingPrice: req.body.shippingPrice,
         AddressId: addressId,
-        CustomerId: customerId
+        CustomerId: customerId,
+        isPaid: '0',
+        isDelivered: '0'
       });
       const newOrder = await Orderline.create(createdOrder);
       res.status(201).send({ message: 'New Order Created', data: newOrder});
     })
 );
+// route to get all orders made by a specific customer
 orderRouter.get(
   '/mine',
   isAuth,
@@ -35,6 +38,8 @@ orderRouter.get(
     res.send(orders);
   })
 );
+
+// Route to get all the orders ever made for admin dashboard
 orderRouter.get(
   '/',
   isAuth,
