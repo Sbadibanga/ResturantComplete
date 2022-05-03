@@ -108,21 +108,7 @@ section {
   text-transform: capitalize;
   position: relative;
 }
-.section-title h2::before {
-  content: "";
-  position: absolute;
-  width: 170px;
-  height: 2px;
-  display: block;
-  font-size: 24px;
-  background-color: var(--contrast-color);
-  bottom: 0;
-  left: 43%;
-  color: var(--main-color);
-  font-family: var(--cursive-font);
-  font-weight: 400;
-  text-transform: capitalize;
-}
+
 /* buttons */
 .btn {
   display: inline-block;
@@ -810,6 +796,13 @@ Resposive section
   .form-items,
   .footer-item,
   .btn {
+    width: 100%;
+  }
+  .section-title {
+    width: 100%;
+    align-items: center;
+  }
+  .products .product .product-name .product-price .product::after {
     width: 100%;
   }
 }

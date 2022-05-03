@@ -39,7 +39,7 @@ orderRouter.get(
   })
 );
 
-// Route to get all the orders ever made for admin dashboard
+// Route to get all the orders ever made form admin dashboard
 orderRouter.get(
   '/',
   isAuth,
@@ -47,6 +47,21 @@ orderRouter.get(
   expressAsyncHandler(async (req, res) => {
     const orders = await Orderline.findAll({customer: req.customer.id})
     res.send(orders);
+  })
+);
+// Route to delete the orders made form admin dashboard
+orderRouter.delete(
+  '/:id',
+  isAuth,
+  isAdmin,
+  expressAsyncHandler(async (req, res) => {
+    const order = await Orderline.findByPk(req.params.id);
+    if (order) {
+      const deletedOrder = await order.destroy();
+      res.send({ message: 'Order Deleted', product: deletedOrder });
+    } else {
+      res.status(404).send({ message: 'Order Not Found' });
+    }
   })
 );
 export default orderRouter;

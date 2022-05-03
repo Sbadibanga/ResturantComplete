@@ -1,9 +1,25 @@
+/* eslint-disable no-restricted-globals */
 import DashboardMenu from '../components/DashboardMenu';
-import { getOrders } from '../api';
+import { showLoading, hideLoading, rerender, showMessage } from '../utils';
+import { getOrders, deleteOrder} from '../api';
 
  const orderListScreen = {
    after_render: () => {
-    
+    const deleteButtons = document.getElementsByClassName('delete-button');
+    Array.from(deleteButtons).forEach((deleteButton) => {
+      deleteButton.addEventListener('click', async () => {
+        if (confirm('Are you sure you want to delete this order?')) {
+          showLoading();
+          const data = await deleteOrder(deleteButton.id);
+          if (data.error) {
+            showMessage(data.error);
+          } else {
+            rerender(orderListScreen);
+          }
+          hideLoading();
+        }
+      });
+    });
    },
    render: async () => {
      const orders = await getOrders();
