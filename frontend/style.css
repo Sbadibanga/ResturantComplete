@@ -256,6 +256,11 @@ nav {
   font-weight: bold;
   font-size: 16px;
 }
+.header--hidden {
+  transform: translateY(calc(-1 * var(--header-padding)));
+  box-shadow: none;
+  opacity: 0;
+}
 /* homepage styles starts*/
 .home-section {
   position: relative;
@@ -580,7 +585,7 @@ profile styles
 .form-itemsp {
   display: flex;
   flex-direction: column;
-  width: 20rem;
+  width: 100%;
   padding: 2rem;
   border: 0.1rem #fe5f00 solid;
   border-radius: 0.5rem;
@@ -792,6 +797,20 @@ Resposive section
   }
   .burger {
     display: block;
+  }
+  section {
+    width: 100%;
+  }
+  .form-container {
+    width: 100%;
+  }
+  form {
+    width: 100%;
+  }
+  .form-items,
+  .footer-item,
+  .btn {
+    width: 100%;
   }
 }
 .nav-active {
