@@ -5,7 +5,7 @@ import {Address, Customers} from '../models';
 import {isAuth } from "../utlis";
 
 const addressRouter = express.Router();
-
+// address route to create address
 addressRouter.post(
     '/:id', isAuth,
     expressAsyncHandler( async (req, res) => {
@@ -48,10 +48,9 @@ addressRouter.post(
             country: country
         })
     }
-})
-
-    
+})  
 );
+// address route to update address
 addressRouter.put(
     '/:id', isAuth,
     expressAsyncHandler( async (req, res) => {

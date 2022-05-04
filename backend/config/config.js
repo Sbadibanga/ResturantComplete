@@ -1,5 +1,5 @@
 require('dotenv').config()
-
+// config file to connect to the db
 module.exports = {
   "development": {
     "username": "root",

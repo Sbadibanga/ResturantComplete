@@ -1,3 +1,4 @@
+// orderline table written using sequlieze syntax
 module.exports = (sequelize, DataTypes) => {
     const Orderline = sequelize.define("Orderline", {
       totalPrice: {

@@ -3,7 +3,8 @@ import express from 'express';
  import { isAuth, isAdmin } from '../utlis';
  import Products from '../models';
 
- const productRouter = express.Router();
+// product route to create a product not complete
+const productRouter = express.Router();
  productRouter.post(
    '/',
    isAuth,

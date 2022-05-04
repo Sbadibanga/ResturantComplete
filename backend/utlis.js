@@ -2,6 +2,7 @@
 import jwt  from 'jsonwebtoken';
 import config  from './config/configa';
 
+// function to generate a token for a customer
 export const generateToken = (customer) => {
     return jwt.sign(
       {
@@ -32,6 +33,7 @@ export const isAuth = (req, res, next) =>{
     })
   }
 }
+// function to check if the current logged in customer is an admin
 export const isAdmin = (req, res, next) => {
   if (req.customer && req.customer.isAdmin) {
     next();

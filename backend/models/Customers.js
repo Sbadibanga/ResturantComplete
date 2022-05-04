@@ -1,3 +1,4 @@
+// customer table written using sequlieze syntax
 module.exports = (sequelize, DataTypes) => {
     const Customers = sequelize.define("Customers", {
       firstName: {

@@ -1,3 +1,4 @@
+// config file to generate the secrect variable for the jwt token
 import dotenv from 'dotenv';
 
 dotenv.config();

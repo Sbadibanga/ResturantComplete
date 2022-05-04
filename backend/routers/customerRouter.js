@@ -8,6 +8,7 @@ import { generateToken, isAuth } from "../utlis";
 
 const customerRouter = express.Router();
 
+// Route to create an admin user, can be updated to generate new admins need to figure out how to encrypt password here
 customerRouter.get(
     '/createadmin', 
     expressAsyncHandler( async (req, res) =>{
@@ -25,9 +26,8 @@ customerRouter.get(
 }));
 
 
-// login customers
-// login customers
-// login customers
+
+// Route to login customers
 customerRouter.post(
     '/signin', 
     expressAsyncHandler( async (req, res) => {
@@ -91,7 +91,7 @@ customerRouter.post(
   
   })
   );
-
+// Rout to update customer info
 customerRouter.put(
     '/:id', isAuth,
     expressAsyncHandler( async (req, res) => {

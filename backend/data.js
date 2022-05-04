@@ -1,3 +1,4 @@
+// products as javascript object/module
 module.exports ={
     products: [
       {

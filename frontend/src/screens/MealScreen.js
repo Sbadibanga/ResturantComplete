@@ -8,6 +8,9 @@ const MealScreen = {
     document.getElementById('add-button').addEventListener('click',()=>{
       document.location.hash =`/cart/${request.id}`;
     });
+    document.getElementById('back-menu').addEventListener('click', ()=>{
+      document.location.hash = '/'
+    })
   },
   render: async() => {
     const request = parseRequestURL();
@@ -20,8 +23,8 @@ const MealScreen = {
     return `
     <section class="menu-section">
     <div class="content">
-      <div class="back-to-menu">
-      <a herf= "/#/"> Back to Menu </a>
+      <div class="back-to-menu" id="back-menu">
+      <a herf= "/"> Back to Menu </a>
       </div>
       <div class="content-d">
       <div class= "details">
