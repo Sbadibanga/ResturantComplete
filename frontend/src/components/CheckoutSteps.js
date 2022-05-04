@@ -1,5 +1,6 @@
 /* eslint-disable arrow-body-style */
 
+// checkout steps components
 const CheckoutSteps = {
     render: (props) => {
     return `

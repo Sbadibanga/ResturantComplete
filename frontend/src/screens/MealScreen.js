@@ -2,7 +2,7 @@ import { hideLoading, parseRequestURL, showLoading } from "../utils";
 import { getProduct } from '../api';
 
 const MealScreen = {
-  
+  // after render that adds meals to the cart and redirects to the homescreen
   after_render: () =>{
     const request = parseRequestURL();
     document.getElementById('add-button').addEventListener('click',()=>{
@@ -12,6 +12,7 @@ const MealScreen = {
       document.location.hash = '/'
     })
   },
+  // meal screen that details a meal and its details
   render: async() => {
     const request = parseRequestURL();
     showLoading();

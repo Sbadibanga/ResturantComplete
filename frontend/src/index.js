@@ -14,6 +14,7 @@ import DashboardScreen from './screens/DashboardScreen';
 import ProductListScreen from './screens/ProductListScreen';
 import OrdersListScreen from './screens/OrdersListScreen';
 
+// routes
 const routes = {
   '/': homeScreen,
   '/product/:id': mealScreen,
@@ -29,6 +30,7 @@ const routes = {
   '/productlist': ProductListScreen,
   '/orderlist': OrdersListScreen,
 };
+// router function
 const router = async () => {
   showLoading();
   const request = parseRequestURL();

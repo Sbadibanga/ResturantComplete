@@ -1,6 +1,7 @@
 import DashboardMenu from '../components/DashboardMenu';
  import { getProducts, createProduct} from '../api';
 
+ // list of all products for admin users
  const ProductListScreen = {
    after_render: () => {
     

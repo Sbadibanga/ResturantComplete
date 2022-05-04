@@ -2,7 +2,7 @@ import { createOrder } from '../api';
 import CheckoutSteps from '../components/CheckoutSteps';
 import {cleanCart, getCartItems, getPayment, getShipping} from '../localStorage'
 import { hideLoading, showLoading, showMessage } from '../utils';
-
+// function to retrevie order details
 const convertCartToOrder = () => {
     const orderItems = getCartItems();
 
@@ -25,6 +25,7 @@ const convertCartToOrder = () => {
     };
 
 };
+// place order with order details
 const orderSummary = () => {
     const orderItems = getCartItems();
     

@@ -1,3 +1,4 @@
+// header/nav that alters depending on signin, and admin
 import { getCustomerInfo } from '../localStorage';
 
  const Header = {

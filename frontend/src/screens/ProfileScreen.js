@@ -2,7 +2,7 @@ import {getMyOrders, update, updateAdd} from "../api";
 import { getCustomerInfo, setCustomerInfo, clearCustomer, getShipping, setShipping} from "../localStorage";
 import { hideLoading, showLoading, showMessage } from "../utils";
 
-
+// rerender profile scren after updates
 const ProfileScreen = {
     after_render: () =>{
         document.getElementById("signout-button").addEventListener("click", () =>{
@@ -24,7 +24,7 @@ const ProfileScreen = {
                 showMessage(data.error);
             }else{
                 setCustomerInfo(data)
-                document.location.hash ='/';
+                document.location.hash = "/";
             }
         });
         document.getElementById('address-form').addEventListener
@@ -42,10 +42,11 @@ const ProfileScreen = {
                 showMessage(data.error);
             }else{
                 setShipping(data)
-                document.location.hash ='/';
+                document.location.hash = "/";
             }
         });
     },
+    // profile screen with customer info, address and orders
     render: async () => {
         const {firstname,lastname, email} = getCustomerInfo();
         const {address, postcode, city, country} = getShipping();

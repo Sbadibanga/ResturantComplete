@@ -1,3 +1,4 @@
+// dashboard components for admin users
 const DashboardMenu = {
     render: (props) => {
       return `

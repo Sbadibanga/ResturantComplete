@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { getProducts } from '../api';
-
+// home screen
 const HomeScreen = {
   render: async () => {
     const products = await getProducts();

@@ -5,6 +5,7 @@ import { hideLoading, showLoading, showMessage } from "../utils";
 
 
 const ShippingScreen = {
+    // redirects to payment and sets shipping info
     after_render: () =>{
         document.getElementById("continue-btn").addEventListener("click", () =>{
             document.location.hash = '/payment'; 
@@ -29,6 +30,7 @@ const ShippingScreen = {
             
         });
     },
+    // inserting shipping info
     render: () => {
         const {firstname} = getCustomerInfo();
         if(!firstname){

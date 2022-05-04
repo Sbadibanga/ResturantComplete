@@ -2,6 +2,7 @@ import axios from 'axios';
 import { apiUrl } from "./config";
 import { getCustomerInfo } from './localStorage';
 
+// function to get a product
 export const getProduct = async (id) =>{
     try{
         const response = await axios({
@@ -21,6 +22,7 @@ export const getProduct = async (id) =>{
     }
 
 };
+// function to get products
 export const getProducts = async () => {
     try {
       const response = await axios({
@@ -39,6 +41,7 @@ export const getProducts = async () => {
       return { error: err.response.data.message || err.message };
     }
 };
+// function to create a product
 export const createProduct = async () => {
     try {
       const { token } = getCustomerInfo();
@@ -58,6 +61,7 @@ export const createProduct = async () => {
       return { error: err.response.data.message || err.message };
     }
 };
+// function to signin
 export const signin = async({email, password}) => {
     try{
         const response = await axios({
@@ -80,6 +84,7 @@ export const signin = async({email, password}) => {
         return {error: err.response.data.message || err.message};
     }
 };
+// function to register 
 export const register = async({firstname, lastname,email, password}) => {
     try{
         const response = await axios({
@@ -104,6 +109,7 @@ export const register = async({firstname, lastname,email, password}) => {
         return {error: err.response.data.message || err.message};
     }
 };
+// function to update customer info
 export const update = async({firstname, lastname,email, password}) => {
     try{
         const {id, token} = getCustomerInfo();
@@ -130,6 +136,7 @@ export const update = async({firstname, lastname,email, password}) => {
         return {error: err.response.data.message || err.message};
     }
 };
+// function to update address
 export const updateAdd = async({address, postcode,city, country}) => {
     try{
         const {id, token} = getCustomerInfo();
@@ -156,7 +163,7 @@ export const updateAdd = async({address, postcode,city, country}) => {
         return {error: err.response.data.message || err.message};
     }
 };
-
+// function to create address
 export const shipping = async({address, city, postcode, country}) => {
     try{
         const {id,token} = getCustomerInfo();
@@ -183,6 +190,7 @@ export const shipping = async({address, city, postcode, country}) => {
         return {error: err.response.data.message || err.message};
     }
 };
+// function to create order
 export const createOrder = async (order) => {
     try {
       const { token } = getCustomerInfo();
@@ -203,6 +211,7 @@ export const createOrder = async (order) => {
       return { error: err.response ? err.response.data.message : err.message };
     }
 };
+// function to get sepcific customer orders
 export const getMyOrders = async () => {
     try {
       const { token } = getCustomerInfo();
@@ -221,6 +230,7 @@ export const getMyOrders = async () => {
       return { error: err.response ? err.response.data.message : err.message };
     }
 };
+// function to all orders on admin side
 export const getOrders = async () => {
     try {
       const { token } = getCustomerInfo();
@@ -241,6 +251,7 @@ export const getOrders = async () => {
       return { error: err.response.data.message || err.message };
     }
 };
+// function to delete orders admin side
 export const deleteOrder = async (orderId) => {
   try {
     const { token } = getCustomerInfo();

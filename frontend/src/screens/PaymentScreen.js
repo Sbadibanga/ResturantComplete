@@ -3,6 +3,7 @@ import CheckoutSteps from '../components/CheckoutSteps';
 
 
 const PaymentScreen = {
+    // after method selected redirects to place order
     after_render: () =>{
         document.getElementById('payment-form').addEventListener
         ('submit', async (e) => {
@@ -14,6 +15,7 @@ const PaymentScreen = {
             document.location.hash = '/placeorder';
         });
     },
+    // payment screen to select payment
     render: () => {
         const {firstname} = getCustomerInfo();
         if(!firstname){

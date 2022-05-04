@@ -1,5 +1,5 @@
 import { getCartItems } from './localStorage';
-
+// to get the url of the request and its id and action
 export const parseRequestURL = () => {
     const url = document.location.hash.toLowerCase();
     const request = url.split('/');
@@ -9,18 +9,20 @@ export const parseRequestURL = () => {
       action: request[3],
     };
 };
-  
+// function to rerender a screen
 export const rerender = async(component) =>{
     document.getElementById('main-container').innerHTML = await component.render();
     await component.after_render();
 }
+// function to show loadinig
 export const showLoading = () => {
   document.getElementById('loading-overlay').classList.add('active');
 };
-  
+// function to hide loadinig
 export const hideLoading = () => {
   document.getElementById('loading-overlay').classList.remove('active');
 };
+// function to show a message
 export const showMessage = (message, callback) => {
   document.getElementById('message-overlay').innerHTML = `
   <div>
@@ -38,6 +40,7 @@ export const showMessage = (message, callback) => {
         }
       });
 };
+// function to redirect the customer to shipping if their cart doesnt equal zero or redirect to home page
 export const redirectCustomer = () =>{
   if(getCartItems().length !== 0){
     document.location.hash = '/shipping';

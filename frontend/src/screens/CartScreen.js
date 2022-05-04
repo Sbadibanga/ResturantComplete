@@ -1,9 +1,10 @@
 /* eslint-disable no-shadow */
 /* eslint-disable no-use-before-define */
-import {parseRequestURL, rerender} from "../utils";
+import {parseRequestURL, redirectCustomer, rerender} from "../utils";
 import {getProduct} from '../api'
 import { getCartItems, getCustomerInfo, setCartItems } from "../localStorage";
 
+// function to add items to cart
 const addToCart = (item, forceUpdate = false) =>{
     let cartItems = getCartItems();
     const existItem = cartItems.find(x => x.product === item.product);
@@ -19,6 +20,7 @@ const addToCart = (item, forceUpdate = false) =>{
         rerender(CartScreen);
     }
 };
+// function to remove items to cart
 const removeFromCart = (id) =>{
     setCartItems(getCartItems().filter(x => x.product !== id));
     if(id === parseRequestURL().id){
@@ -27,8 +29,9 @@ const removeFromCart = (id) =>{
         rerender(CartScreen);
     }
 }
-
+// cart screen
 const CartScreen = {
+    // after render method to redirect to the shipping/sigin depending on if customer is logged in
     after_render: () => {
         const qtySelects = document.getElementsByClassName("qty-select");
         Array.from(qtySelects).forEach(qtySelect =>{
@@ -48,11 +51,12 @@ const CartScreen = {
             if(!firstname){
                 document.location.hash = '/signin';
             }else{
-                document.location.hash = '/shipping';
+                redirectCustomer()
             }
             
         } )
     },
+    // cart screen rendered with item details
     render: async() =>{
         const request = parseRequestURL();
         if(request.id){

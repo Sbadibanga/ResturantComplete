@@ -4,6 +4,7 @@ import { hideLoading, redirectCustomer, showLoading, showMessage } from "../util
 
 
 const RegisterScreen = {
+    // redirects to homepage
     after_render: () =>{
         document.getElementById('register-form').addEventListener
         ('submit', async (e) => {
@@ -24,6 +25,7 @@ const RegisterScreen = {
             }
         });
     },
+    // register screen
     render: () => {
         if(getCustomerInfo().firstName){
             redirectCustomer();

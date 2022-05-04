@@ -4,6 +4,7 @@ import { showLoading, hideLoading, rerender, showMessage } from '../utils';
 import { getOrders, deleteOrder} from '../api';
 
  const orderListScreen = {
+   // after deleting an order rerenders ordlistscreen
    after_render: () => {
     const deleteButtons = document.getElementsByClassName('delete-button');
     Array.from(deleteButtons).forEach((deleteButton) => {
@@ -21,6 +22,7 @@ import { getOrders, deleteOrder} from '../api';
       });
     });
    },
+   // admin orderlist screen only visiable to admin with orders ever made details
    render: async () => {
      const orders = await getOrders();
      console.log(orders)

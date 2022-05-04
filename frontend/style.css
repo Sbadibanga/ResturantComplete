@@ -58,8 +58,7 @@ h2 {
   font-weight: 600;
   color: var(--contrast-color);
 }
-h3,
-h4 {
+h3 {
   font-weight: 400;
   color: var(--contrast-color);
 }
@@ -88,12 +87,6 @@ p {
 }
 section {
   overflow: hidden;
-}
-.grid-container {
-  display: grid;
-  grid-template-areas: "header" "main" "footer";
-  grid-template-columns: 1fr;
-  height: 100%;
 }
 
 /* section title */
@@ -132,33 +125,6 @@ section {
 .btn-default:hover {
   color: var(--contrast-color);
   background-color: var(--main-color);
-}
-/* animation keyframes */
-@keyframes zoomInOut {
-  0%,
-  100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.1);
-  }
-}
-@keyframes spin01 {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-@keyframes pageLoader {
-  0%,
-  100% {
-    transform: translateX(-50px);
-  }
-  50% {
-    transform: translateX(50px);
-  }
 }
 /*loading*/
 .overlay {
@@ -247,6 +213,9 @@ nav {
   box-shadow: none;
   opacity: 0;
 }
+/*--------------------
+Navigation styles ends here
+----------------------*/
 /* homepage styles starts*/
 .home-section {
   position: relative;
@@ -427,7 +396,7 @@ Our menu section starts here
 /*---------------
 Our menu section ends here
 -----------------*/
-/*product screen starts here*/
+/*meal screen starts here*/
 
 .content-d {
   display: flex;
@@ -476,6 +445,7 @@ Our menu section ends here
 .error {
   color: #000;
 }
+/*meal screen ends here*/
 /*---------------
 Cart styles starts here
 -----------------*/
@@ -828,4 +798,14 @@ Resposive section
 }
 .toggle .line3 {
   transform: rotate(45deg) translate(-5px, -6px);
+}
+/* animation keyframes */
+@keyframes zoomInOut {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
 }

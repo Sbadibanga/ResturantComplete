@@ -1,5 +1,5 @@
 import DashboardMenu from '../components/DashboardMenu';
-
+// Dashboard screen
 const DashboardScreen = {
     after_render: () => {},
     render: () => {
