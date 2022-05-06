@@ -104,7 +104,7 @@ const CartScreen = {
 
                                 )}
                             </select>
-                            <button type="button" class="delete-button" id="${item.product}">
+                            <button type="button" class="delete-button btn btn-default" id="${item.product}">
                                 Delete
                             </button>
                             </div>

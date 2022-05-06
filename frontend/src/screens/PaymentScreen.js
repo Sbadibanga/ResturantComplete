@@ -40,7 +40,7 @@ const PaymentScreen = {
                     <li>
                         <div>
                             <input type= "radio" name="payment-method" id="stripe" value="Stripe"/>
-                            <label for="stripe">Stripe</label>
+                            <label for="stripe">ApplePay</label>
                         </div>
                     </li>
                     <li>

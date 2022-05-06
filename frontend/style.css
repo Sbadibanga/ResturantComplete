@@ -725,12 +725,8 @@ Resposive section
   margin: 5px;
   transition: all 0.3s ease;
 }
-@media screen and (max-width: 1024px) {
-  .nav-links {
-    width: 60%;
-  }
-}
-@media screen and (max-width: 768px) {
+
+@media screen and (max-width: 700px) {
   body {
     overflow-x: hidden;
   }
@@ -760,13 +756,17 @@ Resposive section
   .form-container {
     width: 100%;
   }
-  form {
+  form,
+  .cart {
     width: 100%;
   }
   .form-items,
   .footer-item,
   .btn {
     width: 100%;
+  }
+  .btn {
+    font-size: 16px;
   }
   .section-title {
     width: 100%;

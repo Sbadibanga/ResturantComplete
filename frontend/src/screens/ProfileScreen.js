@@ -124,8 +124,8 @@ const ProfileScreen = {
                 <th>Items Price </th>
                 <th>DATE </th>
                 <th>TOTAL </th>
-                <th>PAID </th>
-                <th>DELIVERED </th>
+                <th>PAID? </th>
+                <th>DELIVERED? </th>
                 </tr>
             </thead>
             <tbody>

@@ -1,4 +1,4 @@
-import axios from 'axios';
+
 import { getProducts } from '../api';
 // home screen
 const HomeScreen = {

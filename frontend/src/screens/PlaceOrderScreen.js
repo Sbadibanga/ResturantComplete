@@ -29,7 +29,7 @@ const convertCartToOrder = () => {
 const orderSummary = () => {
     const orderItems = getCartItems();
     
-    const itemsPrice = orderItems.reduce((a,c) => a +c.price * c.qty, 0);
+    const itemsPrice = orderItems.reduce((a,c) => a + c.price * c.qty, 0);
     const shippingPrice = itemsPrice > 100 ? 0: 5;
     const taxPrice = Math.round(0.15 * itemsPrice * 100) / 100;
     const totalPrice = itemsPrice + shippingPrice + taxPrice;
