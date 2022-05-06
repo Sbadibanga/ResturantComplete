@@ -240,3 +240,4 @@ Readme
     . update ProductListScreen.js
     i. handle delete button
     ii. rerender after deletion
+    While writing the system code this resource were used to help implement the system, some of the routes were implemeted using styles obtained from these videos 1. https://www.youtube.com/playlist?list=PLpPqplz6dKxUaZ630TY1BFIo5nP-_x-nL 2. https://www.youtube.com/watch?v=b91XgdyX-SM&list=PLkPMK1452ETn4Jhd6luL2wSpfjifLLceN&index=6&t=580s 3. https://www.youtube.com/watch?v=37CLbUmFINs&list=PLkPMK1452ETn4Jhd6luL2wSpfjifLLceN&index=3
