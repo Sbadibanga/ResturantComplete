@@ -14,7 +14,7 @@ import DashboardScreen from './screens/DashboardScreen';
 import ProductListScreen from './screens/ProductListScreen';
 import OrdersListScreen from './screens/OrdersListScreen';
 
-// routes
+// routes url and screens as responders
 const routes = {
   '/': homeScreen,
   '/product/:id': mealScreen,

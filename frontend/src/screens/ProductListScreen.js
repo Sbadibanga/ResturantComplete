@@ -1,7 +1,7 @@
 import DashboardMenu from '../components/DashboardMenu';
  import { getProducts} from '../api';
 
- // list of all products for admin users
+ // list of all products for admin users, can create orders too
  const ProductListScreen = {
    after_render: () => {
     

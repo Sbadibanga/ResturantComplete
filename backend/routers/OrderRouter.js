@@ -39,7 +39,7 @@ orderRouter.get(
   })
 );
 
-// Route to get all the orders ever made form admin dashboard
+// Route to get all the orders ever made from admin dashboard
 orderRouter.get(
   '/',
   isAuth,
@@ -49,7 +49,7 @@ orderRouter.get(
     res.send(orders);
   })
 );
-// Route to delete the orders made form admin dashboard
+// Route to delete the orders made from admin dashboard
 orderRouter.delete(
   '/:id',
   isAuth,

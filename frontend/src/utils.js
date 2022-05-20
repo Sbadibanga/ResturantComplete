@@ -1,5 +1,5 @@
 import { getCartItems } from './localStorage';
-// to get the url of the request and its id and action
+// to get the url of the spefic route, returns object 
 export const parseRequestURL = () => {
     const url = document.location.hash.toLowerCase();
     const request = url.split('/');
