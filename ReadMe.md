@@ -1,4 +1,5 @@
 Readme
+This is my final year project that I did for desitation in my final year at university. There is still alot of improvement that can be done to be able to make this project deployable, but as it was my final year project it shall remain like this as I do plan to move on to other things.
 
 1. Create Folder Structure
    . create root folder as ResturantComplete
