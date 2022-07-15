@@ -3,6 +3,8 @@ Readme
 
 This is my final year project that I did for desitation in my final year at university. There is still alot of improvement that can be done to be able to make this project deployable, but as it was my final year project it shall remain like this as I do plan to move on to other things.
 
+The prototype was desgined using figma.com if you follow the link you´ll be able to see the prototype : https://www.figma.com/file/iiM3lQpgXb58pyKeo3pDMi/AtHome?node-id=0%3A1
+
 1. Create Folder Structure
    . create root folder as ResturantComplete
    i. add frontend and backend folder
